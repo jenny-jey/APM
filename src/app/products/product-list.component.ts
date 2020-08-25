@@ -24,26 +24,27 @@ export class ProductListComponent implements OnInit{
         this.filteredProducts = this.listFilter? this.performFilter(this.listFilter): this.products;
     }
     filteredProducts: IProduct[];
-    products :  IProduct [] =[
-       {"productId": 2,
-    "productName":"Garden Cart",
-     "productCode":"GBN-0023",
-    "releaseDate":"March 18, 2019",
-    "description":"Garden cart",
-    "price":32.99,
-    "starRating":4.2,
-    "imageUrl":"assets/Images/Garden-Cart.jpg", 
-},
-{"productId": 2,
-    "productName":"Showel",
-     "productCode":"GBN-0023",
-    "releaseDate":"March 18, 2019",
-    "description":"Garden cart",
-    "price":32.99,
-    "starRating":4.2,
-    "imageUrl":"assets/Images/Garden-Cart.jpg", 
-}
-];
+    products: IProduct[];
+//     products :  IProduct [] =[
+//        {"productId": 2,
+//     "productName":"Garden Cart",
+//      "productCode":"GBN-0023",
+//     "releaseDate":"March 18, 2019",
+//     "description":"Garden cart",
+//     "price":32.99,
+//     "starRating":4.2,
+//     "imageUrl":"assets/Images/Garden-Cart.jpg", 
+// },
+// {"productId": 2,
+//     "productName":"Showel",
+//      "productCode":"GBN-0023",
+//     "releaseDate":"March 18, 2019",
+//     "description":"Garden cart",
+//     "price":32.99,
+//     "starRating":4.2,
+//     "imageUrl":"assets/Images/Garden-Cart.jpg", 
+// }
+// ];
 private _productService;
 
 constructor(private productService: ProductService)
@@ -55,7 +56,7 @@ toggleImage(): void{
     this.showImage = !this.showImage; 
  }
  ngOnInit(): void{
-     this.products = this.productService.getProduct();
+     this.products = this.productService.getProducts();
      this.filteredProducts = this.products;
      this.listFilter = 'cart';
  }
