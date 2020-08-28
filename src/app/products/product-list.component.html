@@ -17,7 +17,7 @@
         
     </div>
     <div class='table-responsive'>
-        <table class='table' 
+        <table class='table'
         *ngIf='products && products.length'>
             <thead>
                 <tr>
@@ -33,15 +33,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor='let product of filteredProducts'>
+                <tr *ngFor='let product of products'>
+                    <!-- <tr *ngFor="let product of records"> -->
                     <td><img *ngIf='showImage' 
                         [src]='product.imageUrl'
                     [title]='product.productName'
                     [style.width.px]='imageWidth'
                     [style.margin.px]='imageMargin '>
                 </td>
-                    <td>{{product.productName}}</td>
-                    <td>{{product.productCode |lowercase | covertToSpaces: '-' }}</td>
+                    <td><a [routerLink]="['/products', product.productId]">{{product.productName}}</a></td>
+                    <td>{{product.productCode | lowercase | covertToSpaces: '-' }}</td>
                     <td>{{product.releaseDate}}</td>
                     <td>{{product.price | currency : 'EUR': 'symbol':'1.2-2' }}</td>
                     <td><pm-star [rating]='product.starRating'></pm-star></td>

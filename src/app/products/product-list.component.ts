@@ -4,7 +4,7 @@ import { ProductService } from "./product.service";
 
 
 @Component({
-    selector:'pm-products',
+    // selector:'pm-products',
     templateUrl:  './product-list.component.html',
     styleUrls : ['./product-list.component.css']
 })
@@ -16,6 +16,7 @@ export class ProductListComponent implements OnInit{
     imageMargin : Number =2;
     showImage : boolean = false;
     _listFilter : string;
+    errorMessage: any;
     get listFilter(): string{
         return this._listFilter;
     }
@@ -46,6 +47,7 @@ export class ProductListComponent implements OnInit{
 // }
 // ];
 private _productService;
+public records: IProduct[];
 
 constructor(private productService: ProductService)
 {
@@ -56,14 +58,25 @@ toggleImage(): void{
     this.showImage = !this.showImage; 
  }
  ngOnInit(): void{
-     this.products = this.productService.getProducts();
+     //this.product = this.productService.getProducts();
+     this.loadProducts();
      this.filteredProducts = this.products;
-     this.listFilter = 'cart';
+     //this.listFilter = 'cart';
  }
+ loadProducts(){
+    this.productService.getProducts().subscribe(
+        (productData : IProduct[]) => {
+          this.products = productData;
+          console.log('JSON Response = ', JSON.stringify(productData))
+          
+        }
+    );
+  }
 
  performFilter(filterBy: string): IProduct[] {
     filterBy = filterBy.toLocaleLowerCase();
-    return this.products.filter((product: IProduct)=>product.productName.toLocaleLowerCase().indexOf(filterBy)!= -1)
+    return this.products.filter((products: IProduct)=>products.productName.toLocaleLowerCase().indexOf(filterBy)!= -1)
 }
 
 }
+ 
