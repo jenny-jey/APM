@@ -59,7 +59,7 @@ toggleImage(): void{
  }
  ngOnInit(): void{
      //this.product = this.productService.getProducts();
-     this.loadProducts();
+     this.loadProducts(); 
      this.filteredProducts = this.products;
      //this.listFilter = 'cart';
  }
